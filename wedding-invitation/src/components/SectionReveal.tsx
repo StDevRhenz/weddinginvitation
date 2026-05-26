@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './SectionReveal.module.css';
 
@@ -16,6 +16,25 @@ const SectionReveal: React.FC<Props> = ({ children, className = '', delay = 0, d
     right: { x: 36, y: 0 },
     fade: { x: 0, y: 0 },
   }[direction];
+
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 520px)');
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener?.('change', update);
+    return () => mq.removeEventListener?.('change', update);
+  }, []);
+
+  if (reduceMotion) {
+    return (
+      <div className={`${styles.reveal} ${className}`}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <motion.div

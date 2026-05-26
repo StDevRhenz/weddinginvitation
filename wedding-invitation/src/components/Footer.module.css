@@ -45,3 +45,7 @@
   0%, 100% { transform: scale(1); }
   50%       { transform: scale(1.08); }
 }
+
+@media (max-width: 520px) {
+  .heart { animation: none !important; }
+}

@@ -67,3 +67,7 @@
   .btn { bottom: 16px; right: 16px; padding: 8px 12px; }
   .envelopeBtn { bottom: 16px; right: 16px; }
 }
+
+@media (max-width: 520px) {
+  .bar.animated { animation: none !important; transition: none !important; }
+}

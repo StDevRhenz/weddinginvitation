@@ -199,6 +199,11 @@
   }
 }
 
+@media (max-width: 520px) {
+  .flower { display: none !important; }
+  .tapPulse { animation: none !important; }
+}
+
 .tapPulse {
   display: inline-block;
   animation: tapPulse 3.6s ease-in-out infinite;

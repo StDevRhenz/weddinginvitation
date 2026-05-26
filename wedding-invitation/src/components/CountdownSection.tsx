@@ -17,8 +17,8 @@ const CountdownSection: React.FC = () => {
   return (
     <section className={styles.section} id="countdown">
       <SectionReveal>
-        <p className={styles.tag}>counting down to forever</p>
-        <h2 className={styles.title}>Our Big Day</h2>
+        <p className={styles.tag}>We can’t wait to celebrate with you</p>
+        <h2 className={styles.title}>Our Forever Begins</h2>
       </SectionReveal>
 
       {/* <Divider /> */}

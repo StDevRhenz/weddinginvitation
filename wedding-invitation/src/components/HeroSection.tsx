@@ -15,8 +15,12 @@ const HeroSection: React.FC = () => (
         </SectionReveal>
 
         <SectionReveal delay={100}>
-          <p className={styles.joyfully}>joyfully invite you to celebrate the marriage of</p>
+          <p className={styles.joyfully}><span className={styles.inviteStrong}>You are invited</span> to witness and celebrate the marriage of</p>
         </SectionReveal>
+
+        {/* <SectionReveal delay={150} direction="fade">
+          <p className={styles.warmLine}>We would be truly honored by your presence.</p>
+        </SectionReveal> */}
 
         <Divider />
 

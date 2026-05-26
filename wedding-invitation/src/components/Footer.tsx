@@ -8,7 +8,7 @@ const Footer: React.FC = () => (
   <footer className={styles.footer}>
     <Divider />
     <SectionReveal direction="fade">
-      <p className={styles.closing}>with love &amp; gratitude</p>
+      <p className={styles.closing}>With Love &amp; Warm Wishes</p>
       <h2 className={styles.names}>{WEDDING.groom} &amp; {WEDDING.bride}</h2>
       <p className={styles.date}>June 6, 2026</p>
     </SectionReveal>

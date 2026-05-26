@@ -33,8 +33,8 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
     setPhase('opening');
     setTimeout(() => {
       setPhase('done');
-      setTimeout(onOpen, 800);
-    }, 2500);
+      setTimeout(onOpen, 250);
+    }, 1600);
   };
 
   return (
@@ -82,14 +82,14 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
             whileTap={phase === 'idle' ? { scale: 0.99 } : {}}
             initial={{ opacity: 0, y: 24 }}
             animate={phase === 'opening' ? { opacity: 0.6, scale: 0.985 } : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
             role="button"
             aria-label="Open wedding invitation"
           >
             <motion.div
               className={styles.inviteCopy}
               animate={phase === 'opening' ? { scale: 0.99 } : { scale: 1 }}
-              transition={{ duration: 1, ease: 'easeInOut' }}
+              transition={{ duration: 0.6, ease: 'easeInOut' }}
             >
               <p className={styles.kicker}>THE</p>
               <p className={styles.title}>WEDDING</p>
@@ -99,9 +99,9 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
               <motion.p
                 className={styles.tapText}
                 animate={phase === 'idle' ? { opacity: [0.35, 1, 0.35] } : { opacity: 0.55 }}
-                transition={phase === 'idle' ? { duration: 3.4, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.8, ease: 'easeInOut' }}
+                transition={phase === 'idle' ? { duration: 3.4, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.45, ease: 'easeInOut' }}
               >
-                TAP TO CONTINUE
+                OPEN THE INVITATION
               </motion.p>
             </motion.div>
           </motion.button>

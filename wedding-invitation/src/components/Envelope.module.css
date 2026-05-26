@@ -1,3 +1,6 @@
+/* ════════════════════════════════
+   SCENE — full-screen olive bg
+   ════════════════════════════════ */
 .scene {
   position: fixed;
   inset: 0;
@@ -5,240 +8,239 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  /* Soft translucent overlay over the background image */
-  background: linear-gradient(rgba(255,250,245,0.65), rgba(255,250,245,0.65)),
-    url('../assets/background.png') center/cover no-repeat;
+  gap: 2.2rem;
   z-index: 50;
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
+  /* Same deep olive as the reference */
+  background:
+    url('../assets/background.png') center / cover no-repeat,
+    #4a5c38;
 }
 
-.glow {
+/* Dark translucent overlay so envelope pops */
+.scene::before {
+  content: '';
   position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(242,196,206,0.4) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: glowPulse 4s ease-in-out infinite;
+  inset: 0;
+  background: rgba(40, 52, 28, 0.55);
+  z-index: 0;
 }
 
-@keyframes glowPulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50%       { transform: scale(1.1); opacity: 1; }
-}
-
-.intro {
-  text-align: center;
-  z-index: 1;
-}
-
-.introScript {
-  font-family: var(--font-script);
-  font-size: clamp(4rem, 4vw, 2rem);
-  color: var(--text-medium);
-  opacity: 0.85;
-}
-
-/* ─── Envelope ─── */
-.envelope {
+/* ════════════════════════════════
+   ENVELOPE WRAPPER
+   portrait-style tall card
+   ════════════════════════════════ */
+.envelopeWrap {
   position: relative;
-  width: clamp(280px, 80vw, 420px);
-  height: clamp(180px, 50vw, 270px);
+  /* Portrait ratio matching reference ~0.58:1 */
+  width: clamp(240px, 68vw, 360px);
+  aspect-ratio: 0.58 / 1;
   cursor: pointer;
-  perspective: 1000px;
+  perspective: 1400px;
   z-index: 2;
   user-select: none;
 }
 
+/* ── Main olive body ── */
 .envBody {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, #fdf8f0, #f5e8d0);
-  border: 1.5px solid var(--gold-light);
-  border-radius: 4px;
-  overflow: hidden;
+  border-radius: 6px;
+  overflow: visible;
+  background: linear-gradient(170deg, #536647 0%, #405535 40%, #3a4d2e 100%);
   box-shadow:
-    0 20px 60px rgba(201,169,110,0.2),
-    0 4px 16px rgba(201,169,110,0.15),
-    inset 0 0 40px rgba(201,169,110,0.05);
+    0 40px 100px rgba(0, 0, 0, 0.55),
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.liner {
+/* ── Linen / woven texture ── */
+.texture {
   position: absolute;
   inset: 0;
+  border-radius: 6px;
+  pointer-events: none;
+  /* Fine crosshatch to mimic fabric */
   background-image:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 8px,
-      rgba(242,196,206,0.08) 8px,
-      rgba(242,196,206,0.08) 9px
-    );
+    repeating-linear-gradient(0deg,   transparent, transparent 3px, rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px),
+    repeating-linear-gradient(90deg,  transparent, transparent 3px, rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 4px);
 }
 
-.triangleLeft {
+/* ════════════════════════════════
+   INSIDE ENVELOPE GEOMETRY
+   ════════════════════════════════ */
+
+/* Left diagonal shadow fold */
+.sideLeft {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 135px 210px;
-  border-color: transparent transparent rgba(245,233,200,0.5) transparent;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.18) 0%, transparent 55%);
+  clip-path: polygon(0 0, 0 100%, 50% 50%);
+  pointer-events: none;
 }
 
-.triangleRight {
+/* Right diagonal shadow fold */
+.sideRight {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 135px 0 0 210px;
-  border-color: transparent transparent transparent rgba(240,225,185,0.5);
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(225deg, rgba(0,0,0,0.15) 0%, transparent 55%);
+  clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+  pointer-events: none;
 }
 
-.triangleBottom {
+/* Bottom V pointing up from the bottom edge */
+.bottomV {
   position: absolute;
-  bottom: 0;
-  left: 0; right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  margin: 0 auto;
-  border-width: 0 210px 95px 210px;
-  border-color: transparent transparent rgba(232,212,168,0.4) transparent;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.2) 100%);
+  clip-path: polygon(0 100%, 50% 52%, 100% 100%);
+  pointer-events: none;
 }
 
-/* Card peek */
-.cardPeek {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--ivory);
-  border: 1px solid rgba(201,169,110,0.3);
-  border-radius: 2px;
-  padding: 8px 20px;
-  white-space: nowrap;
-  z-index: 2;
-}
-
-.cardPeekText {
-  font-family: var(--font-caps);
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  color: var(--gold-dark);
-}
-
-/* Flap */
-.flap {
+/* ════════════════════════════════
+   TOP FLAP
+   ════════════════════════════════ */
+.flapWrap {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 60%;
-  z-index: 5;
+  /* Flap covers top ~54% — gives a nice deep V when sealed */
+  height: 54%;
+  z-index: 6;
   transform-style: preserve-3d;
+  border-radius: 6px 6px 0 0;
 }
 
-.flapFront, .flapBack {
+/* Front face — the outside of the flap */
+.flapFront {
   position: absolute;
   inset: 0;
+  border-radius: 6px 6px 0 0;
+  /* Same olive, slightly lighter at top */
+  background: linear-gradient(175deg, #5a6e48 0%, #445838 60%, #3d5130 100%);
+  /* V shape: top edge straight, bottom edge is a V pointing down */
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
   backface-visibility: hidden;
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  /* Subtle shadow at fold line */
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
 }
 
-.flapFront {
-  background: linear-gradient(160deg, #f9f0dc, #f0dca8);
-  border-bottom: 1px solid var(--gold-light);
-}
-
+/* Back face — inner lining colour when flipped open */
 .flapBack {
-  background: linear-gradient(160deg, #f5e8c8, #e8d4a0);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(175deg, #2e3d22 0%, #263418 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform: rotateX(180deg);
+  backface-visibility: hidden;
+  border-radius: 6px 6px 0 0;
 }
 
-/* Wax seal */
+/* ════════════════════════════════
+   WAX SEAL
+   sits right on the flap fold
+   ════════════════════════════════ */
 .seal {
   position: absolute;
-  top: 28%;
+  /* Vertically: right on the fold between flap bottom & body */
+  top: calc(54% - 50px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  filter: drop-shadow(0 3px 8px rgba(160,120,64,0.4));
+  filter:
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-.sealInner { display: flex; align-items: center; justify-content: center; }
+/* ════════════════════════════════
+   INNER CARD (rises when open)
+   ════════════════════════════════ */
+.innerCard {
+  position: absolute;
+  /* Starts at the bottom third of the envelope */
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0%);
+  width: 78%;
+  background: linear-gradient(160deg, #fffef9 0%, #fdf5e8 100%);
+  border: 1px solid rgba(201, 169, 110, 0.45);
+  border-radius: 2px;
+  padding: 14px 18px;
+  text-align: center;
+  z-index: 4;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
 
-/* Hint */
-.hint {
+.innerCardSub {
+  font-family: 'Cinzel', serif;
+  font-size: 7px;
+  letter-spacing: 0.35em;
+  color: #9a7848;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.innerCardNames {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  color: #3a2c2c;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.innerCardDate {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #b8960c;
+}
+
+/* ════════════════════════════════
+   HINT ROW
+   ════════════════════════════════ */
+.hintRow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   z-index: 2;
+}
+
+.hintLine {
+  width: 32px;
+  height: 0.5px;
+  background: rgba(232, 224, 204, 0.45);
 }
 
 .hintText {
-  font-family: var(--font-caps);
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--text-light);
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(232, 224, 204, 0.6);
   text-transform: uppercase;
-  animation: hintPulse 2s ease-in-out infinite;
-}
-
-.hintDot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--gold);
-  opacity: 0.5;
-}
-
-.musicStatus {
-  margin-top: -0.5rem;
-  font-family: var(--font-caps);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-light);
-  text-align: center;
-  z-index: 2;
-}
-
-.musicToggle {
-  right: 24px;
-  bottom: 24px;
+  animation: hintPulse 2.2s ease-in-out infinite;
 }
 
 @keyframes hintPulse {
-  0%, 100% { opacity: 0.5; }
-  50%       { opacity: 1; }
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.95; }
 }
 
-/* Names below envelope */
-.namesBelow {
-  text-align: center;
-  z-index: 1;
+/* ════════════════════════════════
+   MUSIC BUTTON (fixed, inherited)
+   ════════════════════════════════ */
+.musicBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 60;
 }
 
-.namesScript {
-  font-family: var(--font-script);
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  color: var(--text-dark);
-  line-height: 1.2;
-}
-
-.namesAnd {
-  font-family: var(--font-elegant);
-  font-style: italic;
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
-  color: var(--gold);
-  margin: 0.15rem 0;
-}
-
+/* ════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════ */
 @media (max-width: 480px) {
-  .envelope { height: clamp(160px, 45vw, 220px); }
-  .triangleLeft  { border-width: 0 0 110px 160px; }
-  .triangleRight { border-width: 110px 0 0 160px; }
-  .triangleBottom { border-width: 0 160px 75px 160px; }
+  .envelopeWrap { width: clamp(210px, 80vw, 300px); }
+  .musicBtn { bottom: 16px; right: 16px; }
 }

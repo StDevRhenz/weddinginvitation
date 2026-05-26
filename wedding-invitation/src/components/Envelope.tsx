@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Envelope.module.css';
-import MusicToggle from './MusicToggle';
-import { WEDDING } from '../utils/constants';
+import MusicToggle from '../../../adsa/wedding-invitation/src/components/MusicToggle';
 
 interface Props {
   onOpen: () => void;
@@ -12,7 +11,7 @@ interface Props {
   onToggleMusic: () => void;
 }
 
-const Envelope: React.FC<Props> = ({ onOpen, playing, ready, error, onToggleMusic }) => {
+const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
   const [phase, setPhase] = useState<'idle' | 'opening' | 'done'>('idle');
 
   const handleClick = () => {
@@ -20,8 +19,8 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, ready, error, onToggleMusi
     setPhase('opening');
     setTimeout(() => {
       setPhase('done');
-      setTimeout(onOpen, 600);
-    }, 1800);
+      setTimeout(onOpen, 500);
+    }, 2200);
   };
 
   return (
@@ -31,120 +30,118 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, ready, error, onToggleMusi
           className={styles.scene}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.6 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.9 }}
         >
-          {/* Ambient glow */}
-          <div className={styles.glow} aria-hidden="true" />
-
-          {/* Title above envelope */}
+          {/* ── Envelope card ── */}
           <motion.div
-            className={styles.intro}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 1 }}
-          >
-            <p className={styles.introScript}>You’re invited</p>
-          </motion.div>
-
-          {/* Envelope wrapper */}
-          <motion.div
-            className={`${styles.envelope} ${phase === 'opening' ? styles.opening : ''}`}
+            className={styles.envelopeWrap}
             onClick={handleClick}
-            whileHover={phase === 'idle' ? { y: -6, transition: { duration: 0.3 } } : {}}
-            initial={{ opacity: 0, y: 40 }}
+            whileHover={phase === 'idle' ? { scale: 1.015, transition: { duration: 0.3 } } : {}}
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8, ease: 'easeOut' }}
+            transition={{ delay: 0.2, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             role="button"
             aria-label="Open wedding invitation"
             tabIndex={0}
             onKeyDown={e => e.key === 'Enter' && handleClick()}
           >
-            {/* Envelope body */}
+            {/* Main olive body */}
             <div className={styles.envBody}>
-              {/* Side triangles */}
-              <div className={styles.triangleLeft} />
-              <div className={styles.triangleRight} />
-              {/* Bottom triangle */}
-              <div className={styles.triangleBottom} />
 
-              {/* Card peek */}
+              {/* Linen texture overlay */}
+              <div className={styles.texture} aria-hidden="true" />
+
+              {/* ── Inside geometry (visible when flap is closed) ── */}
+              {/* Left side shadow fold */}
+              <div className={styles.sideLeft} aria-hidden="true" />
+              {/* Right side shadow fold */}
+              <div className={styles.sideRight} aria-hidden="true" />
+              {/* Bottom V */}
+              <div className={styles.bottomV} aria-hidden="true" />
+
+              {/* ── Top flap – flips open ── */}
               <motion.div
-                className={styles.cardPeek}
-                animate={phase === 'opening' ? { y: -60, opacity: 1 } : { y: 0, opacity: 0.7 }}
-                transition={{ duration: 0.9, delay: 0.5, ease: 'easeOut' }}
+                className={styles.flapWrap}
+                style={{ transformOrigin: 'top center', transformStyle: 'preserve-3d' }}
+                animate={phase === 'opening' ? { rotateX: -175 } : { rotateX: 0 }}
+                transition={{ duration: 1.3, ease: [0.4, 0, 0.2, 1], delay: 0.15 }}
               >
-                <span className={styles.cardPeekText}>
-                  {WEDDING.groom.split(' ')[0]} &amp; {WEDDING.bride.split(' ')[0]}
-                </span>
+                {/* Front of flap */}
+                <div className={styles.flapFront} />
+                {/* Back of flap (shows when flipped) */}
+                <div className={styles.flapBack} />
               </motion.div>
 
-              {/* Envelope liner pattern */}
-              <div className={styles.liner} aria-hidden="true" />
-            </div>
-
-            {/* Flap */}
-            <motion.div
-              className={styles.flap}
-              animate={phase === 'opening' ? { rotateX: -180 } : { rotateX: 0 }}
-              transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
-              style={{ transformOrigin: 'top center', transformStyle: 'preserve-3d' }}
-            >
-              <div className={styles.flapFront} />
-              <div className={styles.flapBack} />
-            </motion.div>
-
-            {/* Wax seal */}
-            <motion.div
-              className={styles.seal}
-              animate={phase === 'opening' ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3, delay: phase === 'opening' ? 0 : 0 }}
-            >
-              <div className={styles.sealInner}>
-                <svg viewBox="0 0 60 60" width="44" height="44">
-                  <circle cx="30" cy="30" r="28" fill="#c9a96e" />
-                  <circle cx="30" cy="30" r="24" fill="none" stroke="#fdf8f0" strokeWidth="1" opacity="0.6" />
-                  <text x="30" y="27" textAnchor="middle" fill="#fdf8f0" fontSize="10" fontFamily="Cinzel, serif" letterSpacing="1">M</text>
-                  <text x="30" y="38" textAnchor="middle" fill="#fdf8f0" fontSize="7" fontFamily="Cinzel, serif" letterSpacing="2">&amp;</text>
-                  <text x="30" y="47" textAnchor="middle" fill="#fdf8f0" fontSize="10" fontFamily="Cinzel, serif" letterSpacing="1">S</text>
+              {/* ── Wax seal sits on the flap fold ── */}
+              <motion.div
+                className={styles.seal}
+                animate={
+                  phase === 'opening'
+                    ? { scale: 0, opacity: 0 }
+                    : { scale: 1, opacity: 1 }
+                }
+                transition={{ duration: 0.22, ease: 'easeIn' }}
+              >
+                <svg viewBox="0 0 100 100" width="100" height="100">
+                  {/* Scalloped edge */}
+                  {Array.from({ length: 24 }).map((_, i) => {
+                    const angle = (i / 24) * Math.PI * 2;
+                    const r = 46;
+                    const cx = 50 + r * Math.cos(angle);
+                    const cy = 50 + r * Math.sin(angle);
+                    return <circle key={i} cx={cx} cy={cy} r="4.5" fill="#e8e0ca" />;
+                  })}
+                  {/* Main circle */}
+                  <circle cx="50" cy="50" r="40" fill="#eae2cc" />
+                  {/* Inner ring */}
+                  <circle cx="50" cy="50" r="34" fill="none" stroke="#c8bfa0" strokeWidth="1.2" />
+                  {/* Initials */}
+                  <text
+                    x="50" y="57"
+                    textAnchor="middle"
+                    fill="#3a4a2e"
+                    fontSize="20"
+                    fontFamily="Cinzel, serif"
+                    fontWeight="500"
+                    letterSpacing="5"
+                  >A|W</text>
                 </svg>
-              </div>
-            </motion.div>
+              </motion.div>
+
+              {/* ── Card that slides up from inside on open ── */}
+              <motion.div
+                className={styles.innerCard}
+                animate={
+                  phase === 'opening'
+                    ? { y: '-60%', opacity: 1 }
+                    : { y: '0%', opacity: 0 }
+                }
+                transition={{ duration: 1.1, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <p className={styles.innerCardSub}>Wedding Invitation</p>
+                <p className={styles.innerCardNames}>Alyssa &amp; Marvin</p>
+                <p className={styles.innerCardDate}>June 6, 2026</p>
+              </motion.div>
+
+            </div>
           </motion.div>
 
-          {/* Click hint */}
+          {/* ── Hint ── */}
           <motion.div
-            className={styles.hint}
+            className={styles.hintRow}
             initial={{ opacity: 0 }}
             animate={{ opacity: phase === 'idle' ? 1 : 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
+            transition={{ delay: 1.6, duration: 0.8 }}
           >
-            <span className={styles.hintDot} />
+            <span className={styles.hintLine} />
             <span className={styles.hintText}>tap to open</span>
-            <span className={styles.hintDot} />
+            <span className={styles.hintLine} />
           </motion.div>
 
-          <MusicToggle playing={playing} onToggle={onToggleMusic} className={styles.musicToggle} />
+          {/* ── Music toggle ── */}
+          <MusicToggle playing={playing} onToggle={onToggleMusic} className={styles.musicBtn} />
 
-          <motion.p
-            className={styles.musicStatus}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.4 }}
-          >
-          </motion.p>
-
-          {/* Names below */}
-          {/* <motion.div
-            className={styles.namesBelow}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 1 }}
-          >
-            <p className={styles.namesScript}>{WEDDING.groom}</p>
-            <p className={styles.namesAnd}>&amp;</p>
-            <p className={styles.namesScript}>{WEDDING.bride}</p>
-          </motion.div> */}
         </motion.div>
       )}
     </AnimatePresence>

@@ -22,7 +22,7 @@ const App: React.FC = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 100);
   }, [tryAutoplay]);
-// ds
+
   return (
     <div className="app">
       <FloralBackground />

@@ -39,6 +39,10 @@ html {
   -ms-overflow-style: none;
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 html::-webkit-scrollbar {
   width: 0;
   height: 0;

@@ -65,10 +65,13 @@
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 20px;
-  transition: background 0.2s;
+  transition: background 0.7s ease-in-out, transform 0.7s ease-in-out;
 }
 
-.legendItem:hover { background: rgba(0,0,0,0.04); }
+.legendItem:hover {
+  background: rgba(0,0,0,0.04);
+  transform: translateY(-1px);
+}
 .legendActive { background: rgba(0,0,0,0.05); }
 
 .legendDot {

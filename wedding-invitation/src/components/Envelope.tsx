@@ -20,10 +20,10 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
         id: index,
         left: `${(index * 100) / 18}%`,
         size: 10 + (index % 4) * 2,
-        duration: 10 + (index % 5) * 1.8,
-        delay: (index % 6) * 0.9,
-        drift: (index % 2 === 0 ? 1 : -1) * (10 + (index % 3) * 6),
-        opacity: 0.45 + (index % 4) * 0.1,
+        duration: 18 + (index % 5) * 2.6,
+        delay: (index % 6) * 1.2,
+        drift: (index % 2 === 0 ? 1 : -1) * (12 + (index % 3) * 6),
+        opacity: 0.18 + (index % 4) * 0.06,
       })),
     [],
   );
@@ -33,8 +33,8 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
     setPhase('opening');
     setTimeout(() => {
       setPhase('done');
-      setTimeout(onOpen, 500);
-    }, 2200);
+      setTimeout(onOpen, 800);
+    }, 2500);
   };
 
   return (
@@ -89,7 +89,7 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
             <motion.div
               className={styles.inviteCopy}
               animate={phase === 'opening' ? { scale: 0.99 } : { scale: 1 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 1, ease: 'easeInOut' }}
             >
               <p className={styles.kicker}>THE</p>
               <p className={styles.title}>WEDDING</p>
@@ -99,7 +99,7 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
               <motion.p
                 className={styles.tapText}
                 animate={phase === 'idle' ? { opacity: [0.35, 1, 0.35] } : { opacity: 0.55 }}
-                transition={phase === 'idle' ? { duration: 1.3, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.4 }}
+                transition={phase === 'idle' ? { duration: 3.4, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.8, ease: 'easeInOut' }}
               >
                 TAP TO CONTINUE
               </motion.p>

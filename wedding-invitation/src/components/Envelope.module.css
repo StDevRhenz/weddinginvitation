@@ -125,13 +125,24 @@
 }
 
 .invited {
-  margin-top: 0.5rem;
-  font-size: clamp(0.85rem, 2.8vw, 1.2rem);
+  margin-top: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 169, 110, 0.24);
+  background: linear-gradient(180deg, rgba(253, 248, 240, 0.12), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 8px 24px rgba(201, 169, 110, 0.08);
+  font-size: clamp(0.85rem, 2.8vw, 1.15rem);
   font-weight: 600;
-  letter-spacing: 0.36em;
+  letter-spacing: 0.28em;
   font-style: italic;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 252, 246, 0.98);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.22);
 }
 
 .tapText {
@@ -190,7 +201,7 @@
 
 .tapPulse {
   display: inline-block;
-  animation: tapPulse 1.9s ease-in-out infinite;
+  animation: tapPulse 3.6s ease-in-out infinite;
 }
 
 @keyframes tapPulse {

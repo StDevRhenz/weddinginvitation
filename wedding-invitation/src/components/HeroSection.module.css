@@ -159,13 +159,13 @@
   letter-spacing: 0.2em;
   color: var(--gold-dark);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 0.7s ease-in-out, background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.7s ease-in-out, border-color 0.7s ease-in-out;
 }
 
 .mapBtn:hover {
   background: var(--gold-light);
   color: var(--text-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(201,169,110,0.2);
 }
 

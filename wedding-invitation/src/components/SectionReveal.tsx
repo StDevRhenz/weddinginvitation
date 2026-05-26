@@ -1,5 +1,5 @@
 import React from 'react';
-import { useInView } from '../hooks/useInView';
+import { motion } from 'framer-motion';
 import styles from './SectionReveal.module.css';
 
 interface Props {
@@ -10,16 +10,23 @@ interface Props {
 }
 
 const SectionReveal: React.FC<Props> = ({ children, className = '', delay = 0, direction = 'up' }) => {
-  const { ref, inView } = useInView();
+  const offset = {
+    up: { x: 0, y: 42 },
+    left: { x: -36, y: 0 },
+    right: { x: 36, y: 0 },
+    fade: { x: 0, y: 0 },
+  }[direction];
 
   return (
-    <div
-      ref={ref}
-      className={`${styles.reveal} ${styles[direction]} ${inView ? styles.visible : ''} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <motion.div
+      className={`${styles.reveal} ${className}`}
+      initial={{ opacity: 0, x: offset.x, y: offset.y, scale: 0.99 }}
+      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.95, delay: delay / 1000, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
 

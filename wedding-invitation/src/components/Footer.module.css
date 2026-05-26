@@ -37,11 +37,11 @@
 .heart {
   font-size: 1.4rem;
   color: var(--blush-deep);
-  animation: heartBeat 1.6s ease-in-out infinite;
+  animation: heartBeat 3.8s ease-in-out infinite;
   opacity: 0.7;
 }
 
 @keyframes heartBeat {
   0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.25); }
+  50%       { transform: scale(1.08); }
 }

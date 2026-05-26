@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Envelope.module.css';
-import MusicToggle from '../../../adsa/wedding-invitation/src/components/MusicToggle';
+import MusicToggle from './MusicToggle';
 
 interface Props {
   onOpen: () => void;

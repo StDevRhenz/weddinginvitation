@@ -1,5 +1,5 @@
 .footer {
-  padding: 2rem 1.5rem 4rem;
+  padding: 2rem 1.5rem 2rem;
   text-align: center;
   background: linear-gradient(180deg, var(--ivory) 0%, var(--peach-light) 100%);
 }
@@ -48,4 +48,25 @@
 
 @media (max-width: 520px) {
   .heart { animation: none !important; }
+}
+
+.creditRow {
+  margin-top: 1rem;
+}
+
+.credit {
+  font-family: var(--font-elegant);
+  font-size: 0.85rem;
+  color: var(--text-medium);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.creditLink {
+  color: var(--gold-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .credit { font-size: 0.78rem; }
 }

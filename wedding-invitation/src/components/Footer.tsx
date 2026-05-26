@@ -20,6 +20,12 @@ const Footer: React.FC = () => (
         ))}
       </div>
     </SectionReveal>
+
+    <div className={styles.creditRow}>
+      <p className={styles.credit}>
+        Made by Love: <a href="https://www.facebook.com/rhenzprince.ganotice/" className={styles.creditLink}>Rhenz</a>
+      </p>
+    </div>
   </footer>
 );
 

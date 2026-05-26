@@ -15,6 +15,9 @@ const App: React.FC = () => {
   const [opened, setOpened] = useState(false);
   const { playing, toggle, ready, error, tryAutoplay } = useMusic(celesteMusic);
 
+  // temporarily hide the envelope — can re-enable later
+  const showEnvelope = false;
+
   const handleOpen = useCallback(() => {
     setOpened(true);
     tryAutoplay();
@@ -26,13 +29,15 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <FloralBackground />
-      <Envelope
-        onOpen={handleOpen}
-        playing={playing}
-        ready={ready}
-        error={error}
-        onToggleMusic={toggle}
-      />
+      {showEnvelope && (
+        <Envelope
+          onOpen={handleOpen}
+          playing={playing}
+          ready={ready}
+          error={error}
+          onToggleMusic={toggle}
+        />
+      )}
       <AnimatePresence>
         {opened && (
           <motion.main

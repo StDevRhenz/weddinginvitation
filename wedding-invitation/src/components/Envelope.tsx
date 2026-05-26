@@ -94,7 +94,7 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
               <p className={styles.kicker}>THE</p>
               <p className={styles.title}>WEDDING</p>
               <p className={styles.offLine}>--OFF--</p>
-              <p className={styles.names}>MARVIN AND ALYSSA</p>
+              <p className={styles.names}>MARVIN & ALYSSA</p>
               <p className={styles.invited}>YOU&apos;RE INVITED</p>
               <motion.p
                 className={styles.tapText}

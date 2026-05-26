@@ -32,6 +32,23 @@
   pointer-events: none;
 }
 
+/* Watermark shown behind the invite content */
+.watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-14deg);
+  font-family: 'Great Vibes', serif;
+  font-size: clamp(36px, 9vw, 140px);
+  color: rgba(255, 255, 255, 0.40);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+  text-align: center;
+  mix-blend-mode: overlay;
+}
+
 .flower {
   position: absolute;
   top: 0;
@@ -187,6 +204,8 @@
     bottom: 16px;
     right: 16px;
   }
+
+  .watermark { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

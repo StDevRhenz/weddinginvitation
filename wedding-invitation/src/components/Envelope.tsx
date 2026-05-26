@@ -74,6 +74,8 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
             ))}
           </div>
 
+          <div className={styles.watermark} aria-hidden="true">Rhenz po hehe</div>
+
           <motion.button
             type="button"
             className={styles.inviteButton}

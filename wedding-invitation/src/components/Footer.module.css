@@ -1,0 +1,47 @@
+.footer {
+  padding: 2rem 1.5rem 4rem;
+  text-align: center;
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--peach-light) 100%);
+}
+
+.closing {
+  font-family: var(--font-elegant);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: var(--text-light);
+  margin-bottom: 0.2rem;
+}
+
+.names {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 0.2rem;
+}
+
+.date {
+  font-family: var(--font-caps);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--text-medium);
+}
+
+.hearts {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.heart {
+  font-size: 1.4rem;
+  color: var(--blush-deep);
+  animation: heartBeat 1.6s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.25); }
+}

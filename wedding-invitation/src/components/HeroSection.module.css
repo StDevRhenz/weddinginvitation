@@ -1,0 +1,188 @@
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 1.5rem 3rem;
+  background: linear-gradient(180deg, var(--ivory-warm) 0%, var(--ivory) 100%);
+  position: relative;
+}
+
+.card {
+  max-width: 600px;
+  width: 100%;
+  background: linear-gradient(160deg, #fffef9, #fdf8ec);
+  border: 1px solid var(--gold-light);
+  border-radius: 2px;
+  padding: 3rem 2.5rem;
+  position: relative;
+  box-shadow:
+    0 30px 80px rgba(201,169,110,0.12),
+    0 8px 24px rgba(201,169,110,0.08);
+}
+
+/* Decorative corner marks */
+.card::before, .card::after {
+  content: '';
+  position: absolute;
+  width: 24px; height: 24px;
+  border-color: var(--gold-light);
+  border-style: solid;
+}
+.card::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+.card::after  { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+.innerBorder {
+  border: 0.5px solid rgba(201,169,110,0.25);
+  padding: 2rem 1.8rem;
+  text-align: center;
+  position: relative;
+}
+
+.innerBorder::before, .innerBorder::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: rgba(201,169,110,0.4);
+  border-style: solid;
+}
+.innerBorder::before { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+.innerBorder::after  { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+
+.together {
+  font-family: var(--font-caps);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.joyfully {
+  font-family: var(--font-elegant);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.5vw, 1.1rem);
+  color: var(--text-medium);
+  line-height: 1.6;
+}
+
+.coupleLine {
+  font-family: var(--font-script);
+  font-size: clamp(2.4rem, 8vw, 3.8rem);
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.coupleAnd {
+  font-family: var(--font-formal);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: var(--gold);
+  line-height: 1;
+}
+
+.details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.detailBlock {
+  flex: 1;
+  min-width: 160px;
+  text-align: center;
+}
+
+.detailLabel {
+  font-family: var(--font-caps);
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.detailBig {
+  font-family: var(--font-elegant);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--text-dark);
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+
+.detailValue {
+  font-family: var(--font-elegant);
+  font-style: italic;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  color: var(--text-medium);
+  line-height: 1.5;
+}
+
+.detailAddress {
+  font-family: var(--font-elegant);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  color: var(--text-light);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.detailDivider {
+  width: 0.5px;
+  align-self: stretch;
+  background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+  min-height: 80px;
+}
+
+.mapRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.mapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--gold-light);
+  border-radius: 40px;
+  font-family: var(--font-caps);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.mapBtn:hover {
+  background: var(--gold-light);
+  color: var(--text-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201,169,110,0.2);
+}
+
+.rsvpNote {
+  font-family: var(--font-elegant);
+  font-style: italic;
+  font-size: clamp(2rem, 2.5vw, 1.05rem);
+  color: var(--text-light);
+}
+
+@media (max-width: 520px) {
+  .card { padding: 2rem 1.25rem; }
+  .innerBorder { padding: 1.5rem 1rem; }
+  .detailDivider { display: none; }
+  .details { gap: 1.5rem; }
+  .coupleLine {
+    gap: 0.3rem;
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+}

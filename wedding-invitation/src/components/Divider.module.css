@@ -1,0 +1,24 @@
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 1.2rem auto;
+  max-width: 340px;
+}
+
+.line {
+  flex: 1;
+  height: 0.5px;
+  background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+}
+
+.diamond { flex-shrink: 0; }
+
+.label {
+  font-family: var(--font-caps);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--gold-dark);
+  white-space: nowrap;
+  text-transform: uppercase;
+}

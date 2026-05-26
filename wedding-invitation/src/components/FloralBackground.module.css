@@ -1,0 +1,75 @@
+.root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cornerTL {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 220px;
+  height: 220px;
+  opacity: 0.8;
+}
+
+.cornerBR {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 220px;
+  height: 220px;
+  opacity: 0.8;
+}
+
+.cornerTR {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 200px;
+  height: 200px;
+  opacity: 0.6;
+}
+
+.cornerBL {
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  width: 200px;
+  height: 200px;
+  opacity: 0.6;
+}
+
+.petal {
+  position: absolute;
+  border-radius: 50% 50% 50% 0;
+  opacity: 0;
+  animation: floatPetal linear infinite;
+}
+
+/* 12 petals with varied positions and timings */
+.p0  { width: 12px; height: 16px; background: #f2c4ce; left: 8%;  animation-duration: 14s; animation-delay: 0s;    animation-name: floatPetal; }
+.p1  { width: 10px; height: 14px; background: #c9b8e8; left: 20%; animation-duration: 18s; animation-delay: 2s;    animation-name: floatPetal; }
+.p2  { width: 14px; height: 18px; background: #f5c9a8; left: 33%; animation-duration: 12s; animation-delay: 5s;    animation-name: floatPetal; }
+.p3  { width:  9px; height: 13px; background: #b8d4b8; left: 47%; animation-duration: 16s; animation-delay: 1s;    animation-name: floatPetal; }
+.p4  { width: 11px; height: 15px; background: #b8d4e8; left: 58%; animation-duration: 20s; animation-delay: 8s;    animation-name: floatPetal; }
+.p5  { width: 13px; height: 17px; background: #e8a0b0; left: 70%; animation-duration: 15s; animation-delay: 3s;    animation-name: floatPetal; }
+.p6  { width:  8px; height: 12px; background: #c9b8e8; left: 82%; animation-duration: 11s; animation-delay: 6s;    animation-name: floatPetal; }
+.p7  { width: 15px; height: 19px; background: #f2c4ce; left: 91%; animation-duration: 17s; animation-delay: 9s;    animation-name: floatPetal; }
+.p8  { width: 10px; height: 14px; background: #f5c9a8; left: 14%; animation-duration: 13s; animation-delay: 11s;   animation-name: floatPetal; }
+.p9  { width: 12px; height: 16px; background: #b8d4b8; left: 42%; animation-duration: 19s; animation-delay: 4s;    animation-name: floatPetal; }
+.p10 { width:  9px; height: 13px; background: #b8d4e8; left: 66%; animation-duration: 22s; animation-delay: 7s;    animation-name: floatPetal; }
+.p11 { width: 11px; height: 15px; background: #e8a0b0; left: 78%; animation-duration: 14s; animation-delay: 13s;   animation-name: floatPetal; }
+
+@keyframes floatPetal {
+  0%   { opacity: 0;    top: -20px;   transform: rotate(0deg)   translateX(0); }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.4; }
+  100% { opacity: 0;    top: 110vh;   transform: rotate(360deg) translateX(40px); }
+}
+
+@media (max-width: 600px) {
+  .cornerTL, .cornerBR, .cornerTR, .cornerBL { width: 150px; height: 150px; }
+}

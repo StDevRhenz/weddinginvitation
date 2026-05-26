@@ -1,0 +1,63 @@
+:root {
+  --blush: #f2c4ce;
+  --blush-light: #fce8ed;
+  --blush-deep: #e8a0b0;
+  --pastel-blue: #b8d4e8;
+  --pastel-blue-light: #ddeef8;
+  --lavender: #c9b8e8;
+  --lavender-light: #e8dff8;
+  --peach: #f5c9a8;
+  --peach-light: #fde8d8;
+  --ivory: #fdf8f0;
+  --ivory-warm: #f9f3e8;
+  --sage: #b8d4b8;
+  --sage-light: #d8edd8;
+  --gold: #c9a96e;
+  --gold-light: #e8d4a8;
+  --gold-dark: #a07840;
+  --text-dark: #3a2c2c;
+  --text-medium: #6b5050;
+  --text-light: #9a7878;
+  --white: #ffffff;
+
+  --font-script: 'Great Vibes', cursive;
+  --font-formal: 'Pinyon Script', cursive;
+  --font-elegant: 'Cormorant Garamond', serif;
+  --font-caps: 'Cinzel', serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--ivory);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+::selection { background: var(--blush); color: var(--text-dark); }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }

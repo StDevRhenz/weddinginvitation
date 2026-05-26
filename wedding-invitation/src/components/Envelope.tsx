@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Envelope.module.css';
 import MusicToggle from './MusicToggle';
@@ -13,6 +13,20 @@ interface Props {
 
 const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
   const [phase, setPhase] = useState<'idle' | 'opening' | 'done'>('idle');
+
+  const flowers = useMemo(
+    () =>
+      Array.from({ length: 18 }, (_, index) => ({
+        id: index,
+        left: `${(index * 100) / 18}%`,
+        size: 10 + (index % 4) * 2,
+        duration: 10 + (index % 5) * 1.8,
+        delay: (index % 6) * 0.9,
+        drift: (index % 2 === 0 ? 1 : -1) * (10 + (index % 3) * 6),
+        opacity: 0.45 + (index % 4) * 0.1,
+      })),
+    [],
+  );
 
   const handleClick = () => {
     if (phase !== 'idle') return;
@@ -33,111 +47,64 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9 }}
         >
-          {/* ── Envelope card ── */}
-          <motion.div
-            className={styles.envelopeWrap}
+          <div className={styles.fallingFlowers} aria-hidden="true">
+            {flowers.map(flower => (
+              <motion.span
+                key={flower.id}
+                className={styles.flower}
+                style={{
+                  left: flower.left,
+                  fontSize: `${flower.size}px`,
+                  opacity: flower.opacity,
+                }}
+                animate={{
+                  y: ['-15vh', '115vh'],
+                  x: [0, flower.drift, 0],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{
+                  duration: flower.duration,
+                  delay: flower.delay,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              >
+                ❀
+              </motion.span>
+            ))}
+          </div>
+
+          <motion.button
+            type="button"
+            className={styles.inviteButton}
             onClick={handleClick}
-            whileHover={phase === 'idle' ? { scale: 1.015, transition: { duration: 0.3 } } : {}}
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={phase === 'idle' ? { scale: 1.01 } : {}}
+            whileTap={phase === 'idle' ? { scale: 0.99 } : {}}
+            initial={{ opacity: 0, y: 24 }}
+            animate={phase === 'opening' ? { opacity: 0.6, scale: 0.985 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             role="button"
             aria-label="Open wedding invitation"
-            tabIndex={0}
-            onKeyDown={e => e.key === 'Enter' && handleClick()}
           >
-            {/* Main olive body */}
-            <div className={styles.envBody}>
-
-              {/* Linen texture overlay */}
-              <div className={styles.texture} aria-hidden="true" />
-
-              {/* ── Inside geometry (visible when flap is closed) ── */}
-              {/* Left side shadow fold */}
-              <div className={styles.sideLeft} aria-hidden="true" />
-              {/* Right side shadow fold */}
-              <div className={styles.sideRight} aria-hidden="true" />
-              {/* Bottom V */}
-              <div className={styles.bottomV} aria-hidden="true" />
-
-              {/* ── Top flap – flips open ── */}
-              <motion.div
-                className={styles.flapWrap}
-                style={{ transformOrigin: 'top center', transformStyle: 'preserve-3d' }}
-                animate={phase === 'opening' ? { rotateX: -175 } : { rotateX: 0 }}
-                transition={{ duration: 1.3, ease: [0.4, 0, 0.2, 1], delay: 0.15 }}
+            <motion.div
+              className={styles.inviteCopy}
+              animate={phase === 'opening' ? { scale: 0.99 } : { scale: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
+              <p className={styles.kicker}>THE</p>
+              <p className={styles.title}>WEDDING</p>
+              <p className={styles.offLine}>--OFF--</p>
+              <p className={styles.names}>MARVIN AND ALYSSA</p>
+              <p className={styles.invited}>YOU&apos;RE INVITED</p>
+              <motion.p
+                className={styles.tapText}
+                animate={phase === 'idle' ? { opacity: [0.35, 1, 0.35] } : { opacity: 0.55 }}
+                transition={phase === 'idle' ? { duration: 1.3, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.4 }}
               >
-                {/* Front of flap */}
-                <div className={styles.flapFront} />
-                {/* Back of flap (shows when flipped) */}
-                <div className={styles.flapBack} />
-              </motion.div>
-
-              {/* ── Wax seal sits on the flap fold ── */}
-              <motion.div
-                className={styles.seal}
-                animate={
-                  phase === 'opening'
-                    ? { scale: 0, opacity: 0 }
-                    : { scale: 1, opacity: 1 }
-                }
-                transition={{ duration: 0.22, ease: 'easeIn' }}
-              >
-                <svg viewBox="0 0 100 100" width="100" height="100">
-                  {/* Scalloped edge */}
-                  {Array.from({ length: 24 }).map((_, i) => {
-                    const angle = (i / 24) * Math.PI * 2;
-                    const r = 46;
-                    const cx = 50 + r * Math.cos(angle);
-                    const cy = 50 + r * Math.sin(angle);
-                    return <circle key={i} cx={cx} cy={cy} r="4.5" fill="#e8e0ca" />;
-                  })}
-                  {/* Main circle */}
-                  <circle cx="50" cy="50" r="40" fill="#eae2cc" />
-                  {/* Inner ring */}
-                  <circle cx="50" cy="50" r="34" fill="none" stroke="#c8bfa0" strokeWidth="1.2" />
-                  {/* Initials */}
-                  <text
-                    x="50" y="57"
-                    textAnchor="middle"
-                    fill="#3a4a2e"
-                    fontSize="20"
-                    fontFamily="Cinzel, serif"
-                    fontWeight="500"
-                    letterSpacing="5"
-                  >A|W</text>
-                </svg>
-              </motion.div>
-
-              {/* ── Card that slides up from inside on open ── */}
-              <motion.div
-                className={styles.innerCard}
-                animate={
-                  phase === 'opening'
-                    ? { y: '-60%', opacity: 1 }
-                    : { y: '0%', opacity: 0 }
-                }
-                transition={{ duration: 1.1, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <p className={styles.innerCardSub}>Wedding Invitation</p>
-                <p className={styles.innerCardNames}>Alyssa &amp; Marvin</p>
-                <p className={styles.innerCardDate}>June 6, 2026</p>
-              </motion.div>
-
-            </div>
-          </motion.div>
-
-          {/* ── Hint ── */}
-          <motion.div
-            className={styles.hintRow}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: phase === 'idle' ? 1 : 0 }}
-            transition={{ delay: 1.6, duration: 0.8 }}
-          >
-            <span className={styles.hintLine} />
-            <span className={styles.hintText}>tap to open</span>
-            <span className={styles.hintLine} />
-          </motion.div>
+                TAP TO CONTINUE
+              </motion.p>
+            </motion.div>
+          </motion.button>
 
           {/* ── Music toggle ── */}
           <MusicToggle playing={playing} onToggle={onToggleMusic} className={styles.musicBtn} />

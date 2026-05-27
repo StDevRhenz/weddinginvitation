@@ -8,7 +8,7 @@ import AttireSection from './components/AttireSection';
 import Footer from './components/Footer';
 import MusicToggle from './components/MusicToggle';
 import { useMusic } from './hooks/useMusic';
-import celesteMusic from './assets/Celeste.mp3';
+import Forevermore from './assets/Forevermore.mp3';
 import './App.css';
 
 const scrollToTopSmooth = (duration = 1100) => {
@@ -36,7 +36,7 @@ const scrollToTopSmooth = (duration = 1100) => {
 
 const App: React.FC = () => {
   const [opened, setOpened] = useState(false);
-  const { playing, toggle, ready, error, tryAutoplay } = useMusic(celesteMusic);
+  const { playing, toggle, ready, error, tryAutoplay } = useMusic(Forevermore);
 
   const handleOpen = useCallback(() => {
     setOpened(true);

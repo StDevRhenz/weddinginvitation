@@ -63,6 +63,7 @@ export function useMusic(src?: string) {
       return;
     }
 
+    audio.seek(63); // Start at 1:03
     audio.play();
     setPlaying(true);
   }, [playing]);
@@ -70,6 +71,7 @@ export function useMusic(src?: string) {
   const tryAutoplay = useCallback(() => {
     const audio = audioRef.current;
     if (!audio || playing || error) return;
+    audio.seek(63); // Start at 1:03
     audio.play();
     setPlaying(true);
   }, [playing, error]);

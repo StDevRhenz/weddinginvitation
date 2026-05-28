@@ -1,5 +1,5 @@
 .section {
-  padding: 5rem 1.5rem;
+    padding: 5rem 1.5rem 2.2rem;
   text-align: center;
   background: linear-gradient(180deg, var(--ivory) 0%, var(--lavender-light) 50%, var(--ivory) 100%);
 }
@@ -197,12 +197,30 @@
   line-height: 1.4;
 }
 
+.mistakeTipLabel {
+  font-family: var(--font-caps);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  opacity: 0.9;
+}
+
+.mistakeTip {
+  font-family: var(--font-elegant);
+  font-size: clamp(0.72rem, 1.7vw, 0.82rem);
+  color: var(--text-dark);
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
 .mistakesFooter {
   font-family: var(--font-elegant);
   font-size: clamp(0.95rem, 2.5vw, 1.05rem);
   color: var(--text-dark);
   font-style: italic;
   line-height: 1.6;
+  margin: 0;
 }
 
 .mistakesFooterBold {

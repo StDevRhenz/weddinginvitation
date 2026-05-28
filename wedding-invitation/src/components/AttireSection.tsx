@@ -7,10 +7,10 @@ import girlsImage from '../assets/girls.png';
 import boysImage from '../assets/boys.png';
 
 const MISTAKES = [
-  { icon: '🎨', text: 'using too many strong colors' },
-  { icon: '◐',  text: 'creating harsh contrast' },
-  { icon: '🌸', text: 'overcrowding florals' },
-  { icon: '☁️', text: 'losing the soft, airy feel' },
+  { icon: '🎨', text: 'using too many strong colors', tip: 'red and orange' },
+  { icon: '◐',  text: 'creating harsh contrast', tip: 'black top with white skirt' },
+  { icon: '🌸', text: 'overcrowding florals', tip: 'floral top and skirt' },
+  { icon: '☁️', text: 'losing the soft, airy feel', tip: 'leather, denim, and sequins' },
 ];
 
 const AttireSection: React.FC = () => {
@@ -88,6 +88,8 @@ const AttireSection: React.FC = () => {
               <li key={item.text} className={styles.mistakeItem}>
                 <span className={styles.mistakeIcon}>{item.icon}</span>
                 <span className={styles.mistakeText}>{item.text}</span>
+                <span className={styles.mistakeTipLabel}>Please avoid:</span>
+                <span className={styles.mistakeTip}>{item.tip}</span>
               </li>
             ))}
           </ul>

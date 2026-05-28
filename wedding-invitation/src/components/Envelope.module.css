@@ -14,6 +14,14 @@
     url('../assets/background.png') center / cover no-repeat;
 }
 
+@media (max-width: 520px) {
+  .scene {
+    background:
+      linear-gradient(180deg, rgba(22, 31, 18, 0.55), rgba(22, 31, 18, 0.78)),
+      url('../assets/couple.jpg') center top / cover no-repeat;
+  }
+}
+
 .scene::before {
   content: '';
   position: absolute;

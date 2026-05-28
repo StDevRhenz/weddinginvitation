@@ -6,6 +6,13 @@ import styles from './AttireSection.module.css';
 import girlsImage from '../assets/girls.png';
 import boysImage from '../assets/boys.png';
 
+const MISTAKES = [
+  { icon: '🎨', text: 'using too many strong colors' },
+  { icon: '◐',  text: 'creating harsh contrast' },
+  { icon: '🌸', text: 'overcrowding florals' },
+  { icon: '☁️', text: 'losing the soft, airy feel' },
+];
+
 const AttireSection: React.FC = () => {
   const [active, setActive] = useState<number | null>(null);
 
@@ -51,25 +58,45 @@ const AttireSection: React.FC = () => {
               alt="Gentlemen attire guide — pastel semi-formal"
               className={styles.outfitImageOutside}
               loading="lazy"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
             <p className={styles.outfitLabel}>For the Gentlemen</p>
           </div>
-
           <div className={styles.outfitCard}>
             <img
               src={girlsImage}
               alt="Ladies attire guide — pastel semi-formal"
               className={styles.outfitImageOutside}
               loading="lazy"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
             <p className={styles.outfitLabel}>For the Ladies</p>
           </div>
+        </div>
+      </SectionReveal>
+
+      {/* ── Mistakes section ── */}
+      <Divider />
+
+      <SectionReveal delay={450}>
+        <div className={styles.mistakesWrap}>
+          <p className={styles.mistakesTag}>common</p>
+          <h3 className={styles.mistakesTitle}>mistakes to avoid ✦</h3>
+
+          <ul className={styles.mistakesList}>
+            {MISTAKES.map((item) => (
+              <li key={item.text} className={styles.mistakeItem}>
+                <span className={styles.mistakeIcon}>{item.icon}</span>
+                <span className={styles.mistakeText}>{item.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p className={styles.mistakesFooter}>
+            keep it
+            <span className={styles.mistakesFooterBold}> light, soft,</span>
+            <span className={styles.mistakesFooterBold}>and balanced</span> 🩶
+          </p>
         </div>
       </SectionReveal>
     </section>

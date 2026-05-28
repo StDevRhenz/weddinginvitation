@@ -74,7 +74,7 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
             ))}
           </div>
 
-          <div className={styles.watermark} aria-hidden="true">Rhenz po hehe</div>
+          {/* <div className={styles.watermark} aria-hidden="true">Rhenz po hehe</div> */}
 
           <motion.button
             type="button"
@@ -94,8 +94,8 @@ const Envelope: React.FC<Props> = ({ onOpen, playing, onToggleMusic }) => {
               transition={{ duration: 0.6, ease: 'easeInOut' }}
             >
               <p className={styles.kicker}>THE</p>
-              <p className={styles.title}>WEDDING</p>
-              <p className={styles.offLine}>--OFF--</p>
+              <p className={styles.title}>CIVIL WEDDING</p>
+              <p className={styles.offLine}>--OF--</p>
               <p className={styles.names}>MARVIN & ALYSSA</p>
               <p className={styles.invited}>YOU&apos;RE INVITED</p>
               <motion.p

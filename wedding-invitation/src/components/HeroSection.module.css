@@ -193,7 +193,7 @@
 .rsvpNote {
   font-family: var(--font-elegant);
   font-style: italic;
-  font-size: clamp(2rem, 2.5vw, 1.05rem);
+  font-size: clamp(1.4rem, 2.5vw, 1.05rem);
   color: var(--text-light);
 }
 

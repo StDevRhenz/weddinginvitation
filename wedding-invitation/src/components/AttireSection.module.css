@@ -44,7 +44,7 @@
   margin-bottom: 0.5rem;
 }
 
-/* Legend */
+/* ── Legend ── */
 .legend {
   display: flex;
   flex-wrap: wrap;
@@ -131,7 +131,96 @@
   border-top: 0.5px solid var(--gold-light);
 }
 
+/* ── Mistakes block ── */
+.mistakesWrap {
+  max-width: 480px;
+  margin-inline: auto;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.mistakesTag {
+  font-family: var(--font-script);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--lavender);
+  margin-bottom: 0.1rem;
+}
+
+.mistakesTitle {
+  font-family: var(--font-caps);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.mistakesList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+
+.mistakeItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 0.5px solid var(--gold-light);
+  border-radius: 16px;
+  padding: 1.2rem 0.85rem;
+  backdrop-filter: blur(4px);
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.mistakeItem:hover {
+  transform: translateY(-3px);
+  background: transparent;
+}
+
+.mistakeIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.mistakeText {
+  font-family: var(--font-elegant);
+  font-size: clamp(0.78rem, 1.8vw, 0.88rem);
+  color: var(--text-medium);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.mistakesFooter {
+  font-family: var(--font-elegant);
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  color: var(--text-dark);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.mistakesFooterBold {
+  font-family: var(--font-caps);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: 0.04em;
+  display: block;
+  line-height: 1.2;
+}
+
 @media (max-width: 600px) {
-  .outfitGrid { flex-direction: column; align-items: center; gap: 1.25rem; }
-  .outfitCard { max-width: 100%; width: 100%; }
+  .mistakesList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+  .mistakeItem {
+    padding: 1rem 0.65rem;
+  }
 }

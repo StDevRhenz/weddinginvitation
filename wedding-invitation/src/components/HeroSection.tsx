@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => (
         </SectionReveal>
 
         <SectionReveal delay={100}>
-          <p className={styles.joyfully}><span className={styles.inviteStrong}>You are invited</span> to witness and celebrate the marriage of</p>
+          <p className={styles.joyfully}><span className={styles.inviteStrong}>You are invited</span>to witness and celebrate the Civil Wedding of</p>
         </SectionReveal>
 
         {/* <SectionReveal delay={150} direction="fade">
@@ -73,7 +73,7 @@ const HeroSection: React.FC = () => (
 
         <SectionReveal delay={500} direction="fade">
           <p className={styles.rsvpNote}>
-            Your presence is the greatest gift.
+            Your presence is more important to us than presents. However, if you wish to give a gift, a contribution to our future together would be greatly appreciated.
           </p>
         </SectionReveal>
 

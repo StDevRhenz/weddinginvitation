@@ -16,9 +16,10 @@
 
 @media (max-width: 520px) {
   .scene {
+    background-color: var(--ivory);
     background:
       linear-gradient(180deg, rgba(253, 248, 240, 0.08), rgba(255, 238, 233, 0.14)),
-      url('../assets/couple.jpg') center top / cover no-repeat;
+      url('../assets/background.png') center / cover no-repeat;
   }
 }
 

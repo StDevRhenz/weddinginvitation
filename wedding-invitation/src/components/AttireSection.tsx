@@ -76,7 +76,7 @@ const AttireSection: React.FC = () => {
       </SectionReveal>
 
       {/* ── Mistakes section ── */}
-      <Divider />
+      {/* <Divider />
 
       <SectionReveal delay={450}>
         <div className={styles.mistakesWrap}>
@@ -100,7 +100,7 @@ const AttireSection: React.FC = () => {
             <span className={styles.mistakesFooterBold}>and balanced</span> 🩶
           </p>
         </div>
-      </SectionReveal>
+      </SectionReveal> */}
     </section>
   );
 };

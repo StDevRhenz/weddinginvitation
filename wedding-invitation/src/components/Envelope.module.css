@@ -173,7 +173,7 @@
 
 .tapText {
   margin-top: 1rem;
-  font-size: clamp(0.55rem, 1.7vw, 0.72rem);
+  font-size: clamp(0.33rem, 1.7vw, 0.72rem);
   font-weight: bold;
   letter-spacing: 0.22em;
   /* font-style: normal; */

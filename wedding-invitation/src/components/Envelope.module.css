@@ -174,11 +174,12 @@
 .tapText {
   margin-top: 1rem;
   font-size: clamp(0.55rem, 1.7vw, 0.72rem);
-  font-weight: 700;
-  letter-spacing: 0.26em;
-  font-style: italic;
+  font-weight: bold;
+  letter-spacing: 0.22em;
+  /* font-style: normal; */
   color: #000000;
   text-shadow: none;
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
 .musicBtn {
@@ -234,7 +235,7 @@
 
 .tapPulse {
   display: inline-block;
-  animation: tapPulse 3.6s ease-in-out infinite;
+  animation: tapPulse 8.2s ease-in-out infinite;
 }
 
 @keyframes tapPulse {
@@ -245,7 +246,7 @@
 
   100% {
     opacity: 100;
-    font-weight: 2500;
+    font-weight: 2100;
     transform: translateY(0);
   }
 

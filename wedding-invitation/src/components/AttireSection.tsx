@@ -81,7 +81,7 @@ const AttireSection: React.FC = () => {
       <SectionReveal delay={450}>
         <div className={styles.mistakesWrap}>
           <p className={styles.mistakesTag}>common</p>
-          <h3 className={styles.mistakesTitle}>mistakes to avoid ✦</h3>
+          <h3 className={styles.mistakesTitle}>✦ mistakes to avoid ✦</h3>
 
           <ul className={styles.mistakesList}>
             {MISTAKES.map((item) => (
